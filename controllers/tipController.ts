@@ -13,7 +13,7 @@ export async function getSingleTipById(req: Request, res: Response) {
 }
 
 export async function createTip(req: Request, res: Response) {
-  req.body.user = res.locals.currentUser; 
+  req.body.user = res.locals.currentUser;
   const tip = await Tips.create(req.body);
   res.send(tip);
 }
@@ -24,7 +24,7 @@ export async function deleteTip(req: Request, res: Response) {
     const tipId = req.params.tipId;
     const deletedTip = await Tips.findByIdAndDelete(tipId);
     return res.send(deletedTip);
-  } 
+  }
 }
 
 export async function editTip(req: Request, res: Response) {
