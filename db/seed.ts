@@ -8,22 +8,37 @@ const admin = {
   password: "YJ#4x=tB",
 };
 
-const adviceData = [
+const tipData = [
   {
-    name: "test",
-    cohort: "test",
-    emoji: "test",
-    heading: "test",
-    advice: "test",
+    name: "test1",
+    cohort: "test1",
+    emoji: "test1",
+    heading: "test1",
+    advice: "test1",
   },
+  {
+    name: "test2",
+    cohort: "test2",
+    emoji: "test2",
+    heading: "test2",
+    advice: "test2",
+  },
+
 ];
 
 async function seed() {
-  await mongoose.connect("mongodb://127.0.0.1:27017/tips");
+  await mongoose.connect("mongodb://127.0.0.1:27017/tipsdb");
+  console.log("We are connected to the database!")
   await mongoose.connection.db.dropDatabase();
+  console.log("Removed existing data.")
   const user = await Users.create(admin);
-  adviceData.forEach((tip: any) => (tip.user = user));
-  const tip = await Tips.create(adviceData);
+  console.log(user)
+
+  tipData.forEach((tip: any) => (tip.user = user));
+  const tips = await Tips.create(tipData);
+  console.log("Here are the tips I have seeded the database with:")
+  console.log(tips)
+  console.log("Disconnecting...")
   await mongoose.disconnect();
 }
 
