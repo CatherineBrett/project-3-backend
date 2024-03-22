@@ -6,7 +6,7 @@ const admin = {
   username: "admin",
   email: "admin@TrioMélange.com",
   password: "YJ#4x=tB",
-  bio: "Our names are Conor, Michael and Catherine, and we created this app to help General Assembly get the most out of their courses."
+  bio: "Our names are Conor, Michael and Catherine, and we created this app to help General Assembly students to get the most out of their courses."
 };
 
 const tipData = [
@@ -15,14 +15,14 @@ const tipData = [
     cohort: "test1",
     emoji: "test1",
     heading: "test1",
-    advice: "test1",
+    tip: "test1",
   },
   {
     name: "test2",
     cohort: "test2",
     emoji: "test2",
     heading: "test2",
-    advice: "test2",
+    tip: "test2",
   },
 
 ];
