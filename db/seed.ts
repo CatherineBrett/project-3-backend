@@ -6,6 +6,7 @@ const admin = {
   username: "admin",
   email: "admin@TrioMélange.com",
   password: "YJ#4x=tB",
+  bio: "Our names are Conor, Michael and Catherine, and we created this app to help General Assembly get the most out of their courses."
 };
 
 const tipData = [
