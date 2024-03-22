@@ -16,7 +16,7 @@ export async function signUp(req: Request, res: Response) {
     try {
         console.log('Posting', req.body)
 
-        const { userName, email, password, passwordConfirmation } = req.body // the userName is not currently used, we could add a username unique req function?
+        const { username, email, password, passwordConfirmation, bio } = req.body // the userName is not currently used, we could add a username unique req function?
 
         if (password !== passwordConfirmation) {
             return res.status(400).send('Password and password confirmation do not match')

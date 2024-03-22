@@ -28,7 +28,7 @@ router.route("/api/tips").post(secureRoute, createTip);
 
 router.route("/api/tips/:tipId").delete(secureRoute, deleteTip);
 
-router.route("/api/tips/tipId").put(secureRoute, editTip);
+router.route("/api/tips/:tipId").put(secureRoute, editTip);
 
 // ! User end points
 

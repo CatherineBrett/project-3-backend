@@ -6,16 +6,18 @@ import uniqueValidator from 'mongoose-unique-validator'
 interface IUser {
     username: string,
     email: string,
-    password: string
+    password: string,
+    bio: string
 }
 
 const userSchema: Schema<IUser> = new mongoose.Schema<IUser>({
     username: { type: String, required: true },
     email: { type: String, required: true, unique: true },
-    password: { type: String, required: true, }
+    password: { type: String, required: true, },
+    bio: { type: String, required: true, },
 })
 
-userSchema.plugin(hidden, { hidden: { _id: true, password: true, email: true } } as any)
+userSchema.plugin(hidden, { hidden: { _id: true, password: true, email: true } } as any) // TODO: Do we need to hide bio/anything else?
 
 userSchema.pre('save', function hashPassword(next) {
     console.log(this.password)
