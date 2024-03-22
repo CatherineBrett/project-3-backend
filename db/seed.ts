@@ -19,10 +19,10 @@ const adviceData = [
 ];
 
 async function seed() {
-  await mongoose.connect("mongodb://127.0.0.1:27017/games");
+  await mongoose.connect("mongodb://127.0.0.1:27017/tips");
   await mongoose.connection.db.dropDatabase();
   const user = await Users.create(admin);
-  adviceData.forEach((game: any) => (game.user = user));
+  adviceData.forEach((tip: any) => (tip.user = user));
   const tip = await Tips.create(adviceData);
   await mongoose.disconnect();
 }
