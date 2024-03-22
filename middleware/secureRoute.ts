@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { SECRET } from "../config/environment";
-import jwt, { JwtPayload, JwtPayload } from "jsonwebtoken";
+import jwt, { JwtPayload } from "jsonwebtoken";
 import Users from "../models/users";
 
 export default function secureRoute(

@@ -8,15 +8,15 @@ const admin = {
   password: "YJ#4x=tB",
 };
 
-const adviceData = [{
+const adviceData = [
+  {
     name: "test",
     cohort: "test",
-    vibe: "test",
-    keyword: "test",
-    description: "test"
-
-}
-]
+    emoji: "test",
+    heading: "test",
+    advice: "test",
+  },
+];
 
 async function seed() {
   await mongoose.connect("mongodb://127.0.0.1:27017/games");
@@ -27,4 +27,4 @@ async function seed() {
   await mongoose.disconnect();
 }
 
-seed()
+seed();
