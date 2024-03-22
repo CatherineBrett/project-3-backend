@@ -11,13 +11,13 @@ export default function secureRoute(
   console.log("This route is secure!");
   const rawToken = req.headers.authorization;
   if (!rawToken) {
-    return res.status(401).json({ messsage: "You are not authorized" });
+    return res.status(401).json({ message: "You are not authorized" });
   }
   const token = rawToken.replace("Bearer ", "");
   jwt.verify(token, SECRET, async (err, payload) => {
     console.log("verifying token...");
     if (err || !payload) {
-      return res.status(401).json({ messsage: "You are not authorized" });
+      return res.status(401).json({ message: "You are not authorized" });
     }
     interface JwtPayload {
       userId: string;
@@ -29,7 +29,7 @@ export default function secureRoute(
     const user = await Users.findById(userId);
 
     if (!user)
-      return res.status(401).json({ messsage: "You are not authorized" });
+      return res.status(401).json({ message: "You are not authorized" });
 
     res.locals.currentUser = user;
 
