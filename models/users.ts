@@ -3,7 +3,7 @@ import bcrypt from 'bcrypt'
 import hidden from 'mongoose-hidden'
 import uniqueValidator from 'mongoose-unique-validator'
 
-interface IUser {
+export interface IUser {
     username: string,
     email: string,
     password: string,

@@ -2,13 +2,13 @@ import mongoose, { Schema } from "mongoose"
 // MB - possibly add mongoose unique validator
 
 // MB - added a new ITip interface to address the TS linting errors in tipController.
-interface ITip {
+export interface ITip {
     name: string,
     cohort: string,
     emoji: string,
     heading: string,
     tip: string,
-    user: mongoose.Schema.Types.ObjectId
+    user?: mongoose.Schema.Types.ObjectId
 }
 
 const tipSchema: Schema<ITip> = new mongoose.Schema<ITip>({
