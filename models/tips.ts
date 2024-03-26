@@ -15,7 +15,7 @@ const tipSchema: Schema<ITip> = new mongoose.Schema<ITip>({
     name: { type: String, required: true },
     cohort: { type: String, required: true },
     emoji: { type: String, required: true },
-    heading: { type: String },
+    heading: { type: String, required: true },
     tip: { type: String, required: true },
     user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true }
 })
