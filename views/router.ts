@@ -36,7 +36,7 @@ router.route("/api/signup").post(signUp);
 
 router.route("/api/login").post(logIn);
 
-router.route("/api/user").get(getUsers);
+// router.route("/api/user").get(getUsers); commented this out, as when trying to get current user we were getting all the users
 
 router.route("/api/user").get(secureRoute, getCurrentUser);
 
