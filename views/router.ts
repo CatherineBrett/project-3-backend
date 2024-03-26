@@ -5,7 +5,7 @@ import {
   editTip,
   getAllTips,
   getSingleTipById,
-} from "../controllers/tipController";
+} from '../controllers/tipController';
 import secureRoute from "../middleware/secureRoute";
 import {
   deleteUser,
