@@ -7,7 +7,8 @@ const userData = [
   username: "admin",
   email: "admin@TrioMélange.com",
   password: "YJ#4x=tB",
-  bio: "Our names are Conor, Michael and Catherine, and we created this app to help General Assembly students to get the most out of their courses."
+  bio: "Our names are Conor, Michael and Catherine, and we created this app to help General Assembly students to get the most out of their courses.",
+  isAdmin: true
   },
   {
   username: "Catherine Brett",
