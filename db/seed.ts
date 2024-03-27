@@ -4,7 +4,7 @@ import Users, { IUser } from "../models/users";
 
 const userData = [
   {
-  username: "admin",
+  username: "Admin",
   email: "admin@TrioMélange.com",
   password: "YJ#4x=tB",
   bio: "Our names are Conor, Michael and Catherine, and we created this app to help General Assembly students to get the most out of their courses.",
