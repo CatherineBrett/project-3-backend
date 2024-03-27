@@ -9,7 +9,7 @@ export async function getAllTips(req: Request, res: Response) {
 export async function getSingleTipById(req: Request, res: Response) {
   const tipId = req.params.tipId; // TODO Set up tipId in router
   const specificTip = await Tips.findById(tipId)
-    .populate("user", "bio _id isAdmin")
+    .populate("user", "username bio _id isAdmin")
     .exec();
   res.send(specificTip);
 }
@@ -30,7 +30,8 @@ export async function createTip(req: Request, res: Response) {
 // }
 export async function deleteTip(req: Request, res: Response) {
   const tipToDelete = await Tips.findById(req.params.tipId);
-  if (res.locals.currentUser._id.equals("66029050610777603484521b") ||
+  if (
+    res.locals.currentUser._id.equals("66029050610777603484521b") ||
     (tipToDelete && res.locals.currentUser._id.equals(tipToDelete.user))
   ) {
     const tipId = req.params.tipId;
@@ -42,6 +43,21 @@ export async function deleteTip(req: Request, res: Response) {
 export async function editTip(req: Request, res: Response) {
   const tipId = req.params.tipId;
   const update = req.body;
+  const tipToEdit = await Tips.findById(tipId);
+
+  if (!tipToEdit) {
+    return res.status(404).send("Tip not found");
+  }
+
+  if (
+    !(
+      res.locals.currentUser._id.equals(tipToEdit.user) ||
+      res.locals.currentUser.isAdmin
+    )
+  ) {
+    return res.status(403).send("You do not have permission to edit this tip");
+  }
+
   const updatedTip = await Tips.findByIdAndUpdate(tipId, update, { new: true });
   res.send(updatedTip);
 }
