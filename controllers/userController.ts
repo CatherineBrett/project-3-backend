@@ -2,6 +2,7 @@ import { Request, Response } from 'express'
 import Users, { validatePassword } from '../models/users'
 import jwt from 'jsonwebtoken'
 import { SECRET } from '../config/environment'
+import formatValidationError from '../errors/validation'
 
 export async function getUsers(req: Request, res: Response) {
     try {
@@ -12,42 +13,60 @@ export async function getUsers(req: Request, res: Response) {
     }
 }
 
+
 export async function signUp(req: Request, res: Response) {
     try {
         console.log('Posting', req.body)
 
         const { username, email, password, passwordConfirmation, bio } = req.body // the userName is not currently used, we could add a username unique req function?
 
+        const existingUserName = await Users.findOne({ username: req.body.username })
+
+        if (!username) {
+            return res.status(400).send({ message: 'Username is required', errors: { username: 'Username is required' } });
+        }
+
+        if (existingUserName) {
+            return res.status(400).send({ message: 'That username already exists', errors: { username: 'That username already exists' } })
+        }
+
+
         if (password !== passwordConfirmation) {
-            return res.status(400).send('Password and password confirmation do not match')
+            return res.status(400).send({ message: 'Password and password confirmation do not match', errors: { passwordConfirmation: 'Password and password confirmation do not match' } })
         }
 
 
         const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
         if (!passwordRegex.test(password)) {
-            return res.status(400).send('Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character')
+            return res.status(400).send({ message: 'Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character', errors: { password: "Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character" } })
         }
 
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
         if (!emailRegex.test(email)) {
-            return res.status(400).send('Invalid email format')
+            return res.status(400).send({ message: 'Invalid email format', errors: { email: 'Invalid email format' } })
         }
 
         const existingUser = await Users.findOne({ email: req.body.email })
 
         if (existingUser) {
-            return res.status(400).send('Email already exists')
+            return res.status(400).send({ message: 'Email already exists', errors: { email: 'Email already exists' } })
         }
+
+        if (!bio) {
+            return res.status(400).send({ message: 'Bio field is required', errors: { bio: 'Bio field is required' } });
+        }
+
         const user = await Users.create(req.body)
         if (user) {
             res.send(`Successfully posted ${user}`)
             console.log(user)
         } else {
-            res.status(404).send(`User not posted, did you complete all required fields?`)
+            res.status(404).send({ message: `Did you complete all required fields?` })
         }
+
     } catch (error) {
         console.error(error)
-        res.status(500).send("Internal server error, did you complete all necessary fields")
+        res.status(500).send({ message: "Did you complete all necessary fields?" })
     }
 }
 

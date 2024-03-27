@@ -12,11 +12,11 @@ export interface IUser {
 }
 
 const userSchema: Schema<IUser> = new mongoose.Schema<IUser>({
-    username: { type: String, required: true },
+    username: { type: String, required: true, unique: true },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true, },
-    bio: { type: String, required: true, },
-    isAdmin: {type: Boolean }
+    bio: { type: String, required: true },
+    isAdmin: { type: Boolean }
 })
 
 userSchema.plugin(hidden, { hidden: { _id: true, password: true, email: true } } as any) // TODO: Do we need to hide bio/anything else?
