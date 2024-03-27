@@ -31,7 +31,7 @@ export async function createTip(req: Request, res: Response) {
 export async function deleteTip(req: Request, res: Response) {
   const tipToDelete = await Tips.findById(req.params.tipId);
   if (
-    res.locals.currentUser._id.equals("66029050610777603484521b") ||
+    res.locals.currentUser.isAdmin ||
     (tipToDelete && res.locals.currentUser._id.equals(tipToDelete.user))
   ) {
     const tipId = req.params.tipId;
