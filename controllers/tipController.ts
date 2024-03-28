@@ -9,7 +9,7 @@ export async function getAllTips(req: Request, res: Response) {
 export async function getSingleTipById(req: Request, res: Response) {
   const tipId = req.params.tipId; // TODO Set up tipId in router
   const specificTip = await Tips.findById(tipId)
-    .populate("user", "username bio _id isAdmin")
+    .populate("user", "username bio _id isAdmin gitHub linkedIn")
     .exec();
   res.send(specificTip);
 }

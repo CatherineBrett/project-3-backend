@@ -4,29 +4,31 @@ import Users, { IUser } from "../models/users";
 
 const userData = [
   {
-  username: "Admin",
-  email: "admin@TrioMélange.com",
-  password: "YJ#4x=tB",
-  bio: "Our names are Conor, Michael and Catherine, and we created this app to help General Assembly students to get the most out of their courses.",
-  isAdmin: true
+    username: "Admin",
+    email: "admin@TrioMélange.com",
+    password: "YJ#4x=tB",
+    bio: "Our names are Conor, Michael and Catherine, and we created this app to help General Assembly students to get the most out of their courses.",
+    isAdmin: true
   },
   {
-  username: "Catherine Brett",
-  email: "catherine@TrioMélange.com",
-  password: "P@ssword1!",
-  bio: "My name is Catherine and I am currently studying software engineering. I am part of the SEB-78 cohort, and so far I am particularly enjoying the back-end."
+    username: "Catherine Brett",
+    email: "catherine@TrioMélange.com",
+    password: "P@ssword1!",
+    bio: "My name is Catherine and I am currently studying software engineering. I am part of the SEB-78 cohort, and so far I am particularly enjoying the back-end."
   },
   {
-  username: "Conor Hamilton",
-  email: "conor@TrioMélange.com",
-  password: "P@ssword2!",
-  bio: "I'm Conor and I'm in the SEB-78 cohort. I have enjoyed all aspects of the bootcamp so far and have a particular interest in the front-end."
+    username: "Conor Hamilton",
+    email: "conor@TrioMélange.com",
+    password: "P@ssword2!",
+    bio: "I'm Conor and I'm in the SEB-78 cohort. I have enjoyed all aspects of the bootcamp so far and have a particular interest in the front-end."
   },
   {
-  username: "Michael Broadbent",
-  email: "michael@TrioMélange.com",
-  password: "P@ssword3!",
-  bio: "Hi there! My name is Michael and I am a member of the SEB-78 cohort which runs from January to April 2024. I'm interested in both the front and back end, so am currently figuring out which I'd prefer to specialise in!"
+    username: "Michael Broadbent",
+    email: "michael@TrioMélange.com",
+    password: "P@ssword3!",
+    bio: "Hi there! My name is Michael and I am a member of the SEB-78 cohort which runs from January to April 2024. I'm interested in both the front and back end, so am currently figuring out which I'd prefer to specialise in!",
+    gitHub: "https://github.com/MBroadbent95",
+    linkedIn: "https://www.linkedin.com/in/michael-broadbent-4059ba199/",
   },
 ]
 
@@ -59,28 +61,28 @@ const tipData = [
     heading: "Stop pointing",
     tip: "Stop pointing at your screen when you're discussing your code - even if you're sharing your screen, nobody can see what you're pointing at 😆",
   },
-   {
+  {
     name: "Michael Broadbent",
     cohort: "SEB-78",
     emoji: "staying-motivated",
     heading: "Don't panic!",
     tip: "Learning to program is not a linear process. You will find some days easier than others. Don't panic!",
   },
-   {
+  {
     name: "Conor Hamilton",
     cohort: "SEB-78",
     emoji: "misc",
     heading: "Project notes",
     tip: "While you're doing your projects, make a note of what you've done each day as you go along - it will help you do your README at the end!",
   },
-   {
+  {
     name: "Catherine Brett",
     cohort: "SEB-78",
     emoji: "self-care",
     heading: "Stay hydrated",
     tip: "Keep some water on your desk. You will find it much easier to concentrate if you're not dehydrated.",
   },
-   {
+  {
     name: "Michael Broadbent",
     cohort: "SEB-78",
     emoji: "study-tips",
