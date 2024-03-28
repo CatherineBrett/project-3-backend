@@ -15,19 +15,38 @@ export async function getSingleTipById(req: Request, res: Response) {
 }
 
 export async function createTip(req: Request, res: Response) {
+  const errors: any = {};
+  const { name, cohort, emoji, heading, tip } = req.body;
+  if (!name) {
+    errors.name = "Name is required";
+  }
+  if (!cohort) {
+    errors.cohort = "Cohort is required";
+  }
+  if (!emoji) {
+    errors.emoji = "Advice Category is required";
+  }
+  if (!heading) {
+    errors.heading = "Heading is required";
+  }
+  if (!tip) {
+    errors.tip = "Your Advice is required";
+  }
+  if (Object.keys(errors).length) {
+    return res.status(400).send({ errors });
+  }
   req.body.user = res.locals.currentUser;
-  const tip = await Tips.create(req.body);
-  res.send(tip);
+  try {
+    const tip = await Tips.create(req.body);
+    res.send(tip);
+  } catch (e) {
+    return res.status(400).send({
+      message: "Something went wrong. Please try again later.",
+      errors: { misc: "Something went wrong. Please try again later." },
+    });
+  }
 }
 
-// export async function deleteTip(req: Request, res: Response) {
-//   const tipToDelete = await Tips.findById(req.params.tipId);
-//   if (res.locals.currentUser._id.equals(tipToDelete?.user)) {
-//     const tipId = req.params.tipId;
-//     const deletedTip = await Tips.findByIdAndDelete(tipId);
-//     return res.send(deletedTip);
-//   }
-// }
 export async function deleteTip(req: Request, res: Response) {
   const tipToDelete = await Tips.findById(req.params.tipId);
   if (
