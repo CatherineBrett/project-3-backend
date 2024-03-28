@@ -8,19 +8,19 @@ const userData = [
     email: "admin@TrioMélange.com",
     password: "YJ#4x=tB",
     bio: "Our names are Conor, Michael and Catherine, and we created this app to help General Assembly students to get the most out of their courses.",
-    isAdmin: true
+    isAdmin: true,
   },
   {
     username: "Catherine Brett",
     email: "catherine@TrioMélange.com",
     password: "P@ssword1!",
-    bio: "My name is Catherine and I am currently studying software engineering. I am part of the SEB-78 cohort, and so far I am particularly enjoying the back-end."
+    bio: "My name is Catherine and I am currently studying software engineering. I am part of the SEB-78 cohort, and so far I am particularly enjoying the back-end.",
   },
   {
     username: "Conor Hamilton",
     email: "conor@TrioMélange.com",
     password: "P@ssword2!",
-    bio: "I'm Conor and I'm in the SEB-78 cohort. I have enjoyed all aspects of the bootcamp so far and have a particular interest in the front-end."
+    bio: "I'm Conor and I'm in the SEB-78 cohort. I have enjoyed all aspects of the bootcamp so far and have a particular interest in the front-end.",
   },
   {
     username: "Michael Broadbent",
@@ -30,7 +30,7 @@ const userData = [
     gitHub: "https://github.com/MBroadbent95",
     linkedIn: "https://www.linkedin.com/in/michael-broadbent-4059ba199/",
   },
-]
+];
 
 const tipData = [
   {
@@ -93,23 +93,23 @@ const tipData = [
 
 async function seed() {
   await mongoose.connect("mongodb://127.0.0.1:27017/tipsdb");
-  console.log("We are connected to the database!")
+  console.log("We are connected to the database!");
   await mongoose.connection.db.dropDatabase();
-  console.log("Removed existing data.")
+  console.log("Removed existing data.");
   const users = await Users.create(userData);
-  console.log(users)
+  console.log(users);
 
   // CB: Used "any" as placeholder types here. Ideally would use ITip and IUser, but they are currently failing the type checker - not sure why. Come back to this?
   tipData.forEach((tip: any) => {
     const user = users.find((user: any) => {
-      return user.username === tip.name
+      return user.username === tip.name;
     });
     tip.user = user;
   });
   const tips = await Tips.create(tipData);
-  console.log("Here are the tips I have seeded the database with:")
-  console.log(tips)
-  console.log("Disconnecting...")
+  console.log("Here are the tips I have seeded the database with:");
+  console.log(tips);
+  console.log("Disconnecting...");
   await mongoose.disconnect();
 }
 
